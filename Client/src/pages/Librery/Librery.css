@@ -1,0 +1,24 @@
+.container_page_app{
+    display: flex;
+}
+.librery_container{
+    border-bottom:1px solid grey ;
+    padding: 1rem 2rem;
+    color: aliceblue;
+}
+.librery_title{
+    margin: 0.5rem 4rem;
+}
+.librery_title b{
+    margin:  auto 0.5rem;
+    padding:  auto 0.5rem;
+    font-size: medium;
+}
+.container_videoList_LibraryPage{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0;
+    max-height: 80vh;
+    overflow-y: auto;
+}

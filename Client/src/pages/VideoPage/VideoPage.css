@@ -1,0 +1,87 @@
+.video_container_page{
+    height: calc(100vh - 3.4rem);
+    overflow-y: auto;
+    background-color: rgb(11, 11, 11);
+    color: white;
+}
+.video2_container_page{
+    margin: 1.5rem 4.5rem;
+    display: flex;
+}
+.video_paly{
+    width: calc(100vw - 4.5rem - 35vw);
+    padding: 1rem;
+}
+.video_play_screen{
+  padding: 0.1rem;
+  height: 70vh;
+  width: 100%;
+  background-color: black;
+  border: 1px solid rgba(37, 37, 37, 0.2);
+}
+.chanel_logo_2{
+    border-bottom: 3px solid rgba(245, 222, 179, 0.175);
+    flex-grow: 1;
+}
+.video_title_div_2{
+    margin-bottom: 1.125rem;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    flex-grow: 1;
+}
+.video_title_2{
+    font-size: x-large;
+    margin: 0;
+    padding: 1rem 0.8rem;
+}
+.time_to_upload{
+    display: flex;
+    margin: 0.5rem 1rem;
+    width: calc(100vw - 6.5rem - 35vw);
+}
+.view_pages{
+    display: flex;
+    font-size: 0.8rem;
+    flex-grow: 1;
+    align-items: center;
+}
+.chanel_details{
+    border-bottom: 3px solid rgba(245, 222, 179, 0.175);
+    display: flex;
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: bolder;
+}
+.chanle_logo{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    
+}
+.chanel-logo{
+    display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.19);
+  width: 4rem;
+  height: 4rem;
+  margin: 0.1rem;
+  background-color: rgba(255, 255, 255, 0.667);
+  border-radius: 100%;
+}
+.chanel-logo p {
+    color: black;
+    margin: auto;
+    font-size: xx-large;
+}
+.chanel_name{
+    font-weight: bolder;
+    margin: auto 1rem;
+    font-size: larger;
+}
+.comments_box{
+    margin-top: 2rem;
+    width: 100%;
+    padding-inline-start: 0.5rem;
+}
+.more_videos{
+    width: calc(100vw - 4.5rem - 70vw);
+    padding: 0 1rem;
+}
