@@ -6,11 +6,12 @@ import YourVideos from "../pages/YourVideos/YourVideos.jsx";
 import History from "../pages/History/History.jsx";
 import PlayList from "../pages/PlayList/PlayList.jsx";
 import VideoPage from "../pages/VideoPage/VideoPage.jsx";
+import Chanel from "../pages/Chanel/Chanel.jsx";
 
 import { Routes, Route } from "react-router-dom";
 import "./AllRouts.css";
 
-export default function AllRoutes(){
+export default function AllRoutes({setCreatchanel, setvideoUploadPage}){
     return (
         <>
         
@@ -23,6 +24,7 @@ export default function AllRoutes(){
           <Route path="/feed/history" element={ <History ></History> }></Route>  
           <Route path="/feed/playlist" element={ <PlayList ></PlayList> }></Route>  
           <Route path="/videopage/:vid" element={ <VideoPage ></VideoPage> }></Route>  
+          <Route path="/chanel/:cid" element={ <Chanel setCreatchanel = {setCreatchanel} setvideoUploadPage = {setvideoUploadPage}></Chanel> }></Route> 
         </Routes>
 
         </>

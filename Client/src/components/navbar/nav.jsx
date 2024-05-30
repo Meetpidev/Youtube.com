@@ -1,16 +1,55 @@
 import Searchbar from "./searchbar/searchbar";
 import { Link } from "react-router-dom";
+import GoogleLogin from "react-google-login";
+import {gapi} from "gapi-script";
 import "./navbar.css";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { login } from "../../actions/auth";
+import Auth from "../../pages/Auth/Auth";
 
-function Nav({toggleDrawer}) {
-  const CurrenetUser = {
-    result:{
-      email:"meetkshah3112@gmail.com",
-      joinedon:"2222-07-15T09:57:23.489Z"
+function Nav({ toggleDrawer , setCreatchanel }) {
+
+  const [AuthBtn,setAuthBtn] = useState(false);
+
+  // const CurrentUser = null;
+
+  const CurrentUser = useSelector(state=>state?.currentUserReducer)
+  console.log(CurrentUser);
+
+  // const CurrentUser = {
+  //   result:{
+  //     email:"meetkshah3112@gmail.com",
+  //     joinedon:"2222-07-15T09:57:23.489Z"
+  //   }
+  // };
+  // console.log(CurrentUser)
+  useEffect(()=>{
+    function start() {
+      gapi.client.init({
+        clientId:
+          "605912000605-kv295lc86fm3gpasv9tlvptmpbv6tbrr.apps.googleusercontent.com",
+        scope: "email",
+      });
     }
-  };
+    gapi.load("client:auth2", start);
+  },[]);
+
+  const dispatch=useDispatch();
+  
+  const onSuccess=(response) => {
+    const Email = response?.profileObj.email;
+    console.log(Email);
+    dispatch(login({email:Email}))
+  }
+  
+  const onFailure=(response) => {
+    console.log("Fail to login",response);
+  }
 
   return (
+    <>
     <div className="container_navbar">
         <div className="bars_logo_navbar">
 
@@ -58,26 +97,20 @@ function Nav({toggleDrawer}) {
             <p className="app_box"></p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" className="video" height="24" width="25.75"  viewBox="0 0 448 512"><path fill="#ffffff" d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112v25.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V208c0-61.9 50.1-112 112-112zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
+          
           <div className="auth_content">
           {
-            CurrenetUser ? (
+            CurrentUser ? (
                <>
-                <div className="channel_logo">
+                <div className="channel_logo" onClick={()=>setAuthBtn(true)}>
                   <p className="fstlogo">
                     {
-                      CurrenetUser?.result.name? (
-                        <>
-                          {
-                            CurrenetUser?.result.name.charAt(0).toUpperCasse()
-                          }
-                        </>
+                      CurrentUser?.result.name? ( 
+
+                        <> { CurrentUser?.result.name.charAt(0).toUpperCase() } </>
 
                       ) : (
-                        <>
-                        {
-                        CurrenetUser?.result.email.charAt(0).toUpperCase()
-                        }
-                        </>
+                        <> { CurrentUser?.result.email.charAt(0).toUpperCase() }  </>
                       )
                     }
                   </p>
@@ -85,17 +118,33 @@ function Nav({toggleDrawer}) {
                </>
             ) : (
                <>
-               <p className="auth_con">
-               <svg xmlns="http://www.w3.org/2000/svg"  className="video" height="24" width="25.75" viewBox="0 0 448 512"><path fill="#3ea6ff" d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
-               <b>Sign In</b>
+               <GoogleLogin 
+               clientId="605912000605-kv295lc86fm3gpasv9tlvptmpbv6tbrr.apps.googleusercontent.com"
+               onSuccess={onSuccess}
+               onFailure={onFailure}
+               render={(renderProps)=>(
+                <p className="auth_con" onClick={renderProps.onClick}>
+                   <svg xmlns="http://www.w3.org/2000/svg"  className="video" height="24" width="25.75" viewBox="0 0 448 512"><path fill="#3ea6ff" d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
+                   <b>Sign In</b>
                </p>
+               )}>
+               </GoogleLogin>
                </>
             )
-          }
-           
+          } 
           </div>
         </div>
+
+        {
+          AuthBtn &&
+      <Auth
+      setAuthBtn={setAuthBtn}
+      setCreatchanel={setCreatchanel}
+      User={CurrentUser}
+      ></Auth>
+        }
     </div>
+    </>
   )
 }
 
