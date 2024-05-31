@@ -15,12 +15,12 @@ export const uploadvideo = async(req,res) => {
                 filePath: req.file.path,
                 fileType: req.file.mimetype,
                 fileSize: req.file.size,
-                videoChanel: req.body.channel,
+                videoChanel: req.body.chanel,
                 Uploader: req.body.Uploader,
             })
             
             await file.save();
-            { console.log(videoFiles)}
+            { console.log(videoFiles.Uploader)}
             
             res.status(200).send("Video Uploaded Successfully");
             // alert("Video Uploaded Successfully");

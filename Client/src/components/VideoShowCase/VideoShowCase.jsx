@@ -2,15 +2,20 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import moment from "moment";
 import "./VideoShowCase.css";
+//  onVideoWatched
 
+function VideoShowCase({vid,}) {
 
-function VideoShowCase({vid}) {
- 
+  // const handleVideoPlay = () => {
+  //   // Call the handler to allocate points
+  //   onVideoWatched();
+  // };
+//  onClick={handleVideoPlay}
   
   return (
    <>
      <Link to={`/videopage/${vid?._id}`}>
-       <video src={`http://localhost:8080/${vid?.filePath}`}></video>
+       <video src={`http://localhost:8080/${vid?.filePath}`} ></video>
      </Link>
 
      <div className="video_description">
