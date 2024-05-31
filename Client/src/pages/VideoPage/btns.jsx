@@ -17,11 +17,24 @@ function Btns() {
     }
 
     let handlelikes = () => {
-      setLikeBtn(!LikeBtn);
+      if(LikeBtn){
+        setLikeBtn(false);
+      }
+      else{
+        setLikeBtn(true);
+        setDislikeBtn(false);
+      }
     }
 
     let handleDislikes = () => {
-      setDislikeBtn(!DislikeBtn);
+      if(DislikeBtn){
+       setDislikeBtn(false);
+      }
+      else{
+        setLikeBtn(false);
+        setDislikeBtn(true);
+      }
+      
     }
 
     let handleCount = () => {

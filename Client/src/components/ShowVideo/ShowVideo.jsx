@@ -8,7 +8,7 @@ function ShowVideo({vids}) {
    <>
       <div className='show_container'>
         {
-          vids?.reverse().map(vi=>
+          vids?.map(vi=>
             {
                 return (
                     <div key={vi._id} className="video_box">

@@ -12,7 +12,7 @@ function UploadVideo({setvideoUploadPage}) {
     const [videoFile, setVideoFile] = useState("");
     const [progress, setProgress] = useState(0);
 
-    const CurrentUser = useSelector(state=>state?.currentUserReducer);
+    const CurrentUser = useSelector(state=>state?.currentUserReducer)
 
     const dispatch = useDispatch();
 

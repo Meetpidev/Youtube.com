@@ -1,9 +1,25 @@
-import vid from "../../components/videos/vid.mp4";
+// import vid from "../../components/videos/vid.mp4";
 import Btns from "./btns.jsx";
+import { useSelector } from "react-redux";
 import Comments from "../../components/comments/comments.jsx";
 import "./VideoPage.css";
+import { useParams } from "react-router-dom";
+import moment from "moment";
 
 function VideoPage() {
+
+  const {vid} = useParams();
+
+  const vids = useSelector(state=>state.videoReducer);
+  console.log(vids)
+
+  const vv = vids?.data.filter((q) => q._id === vid)[0];
+
+  const chanels = useSelector(state=>state?.chanellReducer);
+   //  console.log(chanels);
+
+    const curentChanel = chanels.filter(e=>e._id===vid)[0];
+
   return (
    <>
   
@@ -11,14 +27,14 @@ function VideoPage() {
        <div className="video2_container_page">
          <div className="video_paly">
 
-           <video src={vid} className="video_play_screen" controls autoPlay></video>
+           <video src={`http://localhost:8080/${vv?.filePath}`} className="video_play_screen" controls autoPlay></video>
 
           <div className="video_description_2">
               <div className="video_title_div_2">
-                 <p className="video_title_2">Title</p>
+                 <p className="video_title_2">{vv?.videoTitle}</p>
                    <div className="time_to_upload">
                       <div className="view_pages">
-                        5 views <div className="dot"></div> video uploaded 1 year ago 
+                       {vv?.Views} <div className="dot"></div> {vv?.Uploader} {moment(vv?.createdAt).fromNow}
                        </div>
                        <Btns></Btns>
                    </div>
@@ -32,7 +48,7 @@ function VideoPage() {
                   <b className="chanel-logo">
                     <p>C</p>
                   </b>
-                <p className="chanel_name">Chanel Name</p>
+                <p className="chanel_name">{vv?.Uploader}</p>
                 </div>
               
             </div>

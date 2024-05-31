@@ -28,7 +28,7 @@ function CreateChennel({setCreatchanel}) {
       alert("please Enter The Description");
     }
     else{
-      dispatch(updateChanelData(CurrentUser.result._id,{
+      dispatch(updateChanelData(CurrentUser?.result._id,{
         name:name,
         desc:desc,
       }));
@@ -36,7 +36,7 @@ function CreateChennel({setCreatchanel}) {
       setCreatchanel(false)
       setTimeout(()=>{
         dispatch(login({email:CurrentUser?.result.email}))
-      },5000)
+      },1000)
     }
 
   }

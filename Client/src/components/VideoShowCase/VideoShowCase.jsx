@@ -1,27 +1,30 @@
 import PropTypes from 'prop-types'; 
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import moment from "moment";
 import "./VideoShowCase.css";
 
 
 function VideoShowCase({vid}) {
+ 
+  
   return (
    <>
      <Link to={`/videopage/${vid?._id}`}>
-       <video src={`${vid?.video_src}`}></video>
+       <video src={`http://localhost:8080/${vid?.filePath}`}></video>
      </Link>
 
      <div className="video_description">
 
         <div className="chanel_logo">
             <div className="chanel_logo">
-                <p className="uploder">{vid?.Uploader.charAt(0).toUpperCase()}</p>
+                <p className="uploder">{vid?.Uploader?.charAt(0).toUpperCase()}</p>
             </div>
         </div>
         
         <div className="video_etails">
-            <p className="video_title">{vid?.title}</p>
-            <pre className="video_upload_time">31/12/2004</pre>
-            <pre className="video_upload_time">5 views <div className="dot"></div> video uploaded 1 year ago</pre>
+            <p className="video_title">{vid?.videoTitle}</p>
+            <pre className="video_upload_time">{vid?.createdAt}</pre>
+            <pre className="video_upload_time">{vid?.Views} <div className="dot">{vid?.Uploader} {moment(vid?.createdAt).fromNow}</div></pre>
         </div>
      </div>
    </>

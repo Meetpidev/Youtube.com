@@ -5,6 +5,8 @@
     height: 100vh;
     z-index: 100;
     display: flex;
+    right: 0%;
+    left: 0;
 }
 .container2_VidUpload {
     box-shadow: 2px 2px rgba(142, 142, 142, 0.681),
@@ -53,4 +55,9 @@
       height: 7rem;
       padding: 2rem 0;
       margin: auto;
+}
+.ibtn_x{
+  width: 4rem;
+  left: 0%;
+  transform: translateX(85rem);
 }

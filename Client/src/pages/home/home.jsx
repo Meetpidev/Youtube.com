@@ -6,42 +6,42 @@ import "./home.css";
 
 export default function Home(){
 
-  const videosFile = useSelector(state=>state.videoReducer)?.data;
-  console.log(videosFile);
+  const vids = useSelector(state=>state.videoReducer)?.data;
+  console.log(vids);
 
-        const vids = [
-        {   
-            _id: 1,
-            video_src: vid,
-            title: "video 1",
-            Uploader: "Meet Shah",
-            description: "Description of video 1"
-        },
-        {
-            _id: 2,
-            video_src: vid,
-            chanel: "cdd",
-            title: "video 2",
-            Uploader: "Rushikesh Mayatra",
-            description: "Description of video 2"
-        },
-        {
-            _id: 3,
-            video_src: vid,
-            chanel: "add",
-            title: "video 3",
-            Uploader: "Parth Soni",
-            description: "Description of video 3"
-        },
-        {
-            _id: 4,
-            video_src: vid,
-            chanel: "add",
-            title: "video 4",
-            Uploader: "Parth Soni",
-            description: "Description of video 3"
-        },
-    ]
+    //     const vids = [
+    //     {   
+    //         _id: 1,
+    //         video_src: vid,
+    //         title: "video 1",
+    //         Uploader: "Meet Shah",
+    //         description: "Description of video 1"
+    //     },
+    //     {
+    //         _id: 2,
+    //         video_src: vid,
+    //         chanel: "cdd",
+    //         title: "video 2",
+    //         Uploader: "Rushikesh Mayatra",
+    //         description: "Description of video 2"
+    //     },
+    //     {
+    //         _id: 3,
+    //         video_src: vid,
+    //         chanel: "add",
+    //         title: "video 3",
+    //         Uploader: "Parth Soni",
+    //         description: "Description of video 3"
+    //     },
+    //     {
+    //         _id: 4,
+    //         video_src: vid,
+    //         chanel: "add",
+    //         title: "video 4",
+    //         Uploader: "Parth Soni",
+    //         description: "Description of video 3"
+    //     },
+    // ]
     
      
   const NavList = [
