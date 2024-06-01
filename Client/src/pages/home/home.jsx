@@ -1,13 +1,13 @@
 import ShowVideo from "../../components/ShowVideo/ShowVideo";
 import LeftSideBar from "../../components/leftSidebar/LeftSideBar";
-import vid from "../../components/videos/vid.mp4";
+// import vid from "../../components/videos/vid.mp4";
 import { useSelector } from "react-redux";
 import "./home.css";
 
 export default function Home(){
 
-  const vids = useSelector(state=>state.videoReducer)?.data;
-  console.log(vids);
+  const vids = useSelector(state=>state.videoReducer)?.data?.filter(q=>q);
+  // console.log(vids);
 
     //     const vids = [
     //     {   

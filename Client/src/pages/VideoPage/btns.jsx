@@ -3,43 +3,88 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { useDispatch,useSelector } from "react-redux";
+import { likeVideo } from "../../actions/Video.js";
 import "./btns.css";
+import { addToLikedVideo } from "../../api/index.js";
+// import videoFiles from "../../../../Server/moduls/videoFiles";
 
-function Btns() {
+function Btns({vv,vid}) {
+
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+
+  const dispatch = useDispatch();
 
     const [SAveVideo, setSAveVideo] = useState(false);
     const [LikeBtn, setLikeBtn] = useState(false);
     const [DislikeBtn, setDislikeBtn] = useState(false);
-    const [Count, setCount] = useState(0);
+    // const [Count, setCount] = useState(0);
     
     let handleSave = () => {
       setSAveVideo(!SAveVideo);
     }
 
-    let handlelikes = () => {
+    let handlelikes = (e,lk) => {
+      if(CurrentUser)
+        {
       if(LikeBtn){
         setLikeBtn(false);
+        dispatch(
+          likeVideo({
+            id: vid,
+            Like: lk - 1,
+          })
+        );
       }
+
       else{
         setLikeBtn(true);
-        setDislikeBtn(false);
+        dispatch(
+          likeVideo({
+            id: vid,
+            Like: lk + 1,
+          })
+        );
+        dispatch(
+          addToLikedVideo({
+            videoId: vid,
+            viewer: CurrentUser?.result._id,
+          })
+        );
+        
       }
+    } else{
+      alert("You Are Not Log In");
     }
-
-    let handleDislikes = () => {
+  }
+    let handleDislikes = (e,lk) => {
+      if(CurrentUser)
+        {
+       
       if(DislikeBtn){
        setDislikeBtn(false);
       }
       else{
         setLikeBtn(false);
         setDislikeBtn(true);
+        if(LikeBtn){
+          dispatch(
+            likeVideo({
+              id: vid,
+              Like: lk - 1,
+            })
+          );
+        }
       }
       
+    }else{
+      alert("You Are Not Log In");
     }
+  }
 
-    let handleCount = () => {
-      LikeBtn ? setCount(Count+1) : ""
-    }
+    // let handleCount = () => {
+    //   LikeBtn ? setCount(Count+1) : ""
+    // }
  
   return (
     <>
@@ -55,16 +100,15 @@ function Btns() {
             {
               LikeBtn ? (
                     <>
-                      <span className="like" onClick={() => {handlelikes(),handleCount()}}><ThumbUpIcon></ThumbUpIcon></span>
+                      <span className="like" onClick={(e) => {handlelikes(e,vv.Like)}}><ThumbUpIcon></ThumbUpIcon></span>
                     </>
                 ) : (
                     <>
-                     <span className="like" onClick={() => {handlelikes(),handleCount()}}><ThumbUpOutlinedIcon></ThumbUpOutlinedIcon></span>
+                     <span className="like" onClick={(e) => {handlelikes(e,vv.Like)}}><ThumbUpOutlinedIcon></ThumbUpOutlinedIcon></span>
                     </>  
                 )
                
             }
-            <b style={{margin:"auto"}}>{Count}</b>
            </div>
            
         <div className="like_video_page">
@@ -72,11 +116,11 @@ function Btns() {
             {
                 DislikeBtn ? (
                     <>
-                      <span className="Dislike" onClick={() => handleDislikes()}><ThumbDownAltIcon></ThumbDownAltIcon></span>
+                      <span className="Dislike" onClick={(e) => handleDislikes(e,vv.Like)}><ThumbDownAltIcon></ThumbDownAltIcon></span>
                     </>
                 ) : (
                     <>
-                     <span className="Dislike" onClick={() => handleDislikes()}><ThumbDownOffAltIcon></ThumbDownOffAltIcon></span>
+                     <span className="Dislike" onClick={(e) => handleDislikes(e,vv.Like)}><ThumbDownOffAltIcon></ThumbDownOffAltIcon></span>
                     </>  
                 )
                

@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { fetchAllchanel } from './actions/ChanelUser.js';
 import UploadVideo from './pages/UploadVideo/UploadVideo.jsx';
 import { getAllvideos } from './actions/Video.js';
+import { AlllikeVideo } from './actions/likeVideo.js';
 
 
 
@@ -19,6 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllchanel);
     dispatch(getAllvideos);
+    dispatch(AlllikeVideo);
 
   // .then(data => {
   //   // dispatch the data here if fetchAllchanel is successful

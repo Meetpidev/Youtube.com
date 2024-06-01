@@ -15,8 +15,8 @@ function Nav({ toggleDrawer , setCreatchanel }) {
 
   // const CurrentUser = null;
 
-  const CurrentUser = useSelector(state=>state?.currentUserReducer)
-  console.log(CurrentUser);
+  const CurrentUser = useSelector(state=>state.currentUserReducer)
+  // console.log(CurrentUser);
 
   // const CurrentUser = {
   //   result:{

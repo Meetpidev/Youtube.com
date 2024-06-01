@@ -5,8 +5,30 @@ import Comments from "../../components/comments/comments.jsx";
 import "./VideoPage.css";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { useState } from "react";
 
 function VideoPage() {
+
+  // const { userId } = useParams();
+
+  // const [points, setPoints] = useState(0);
+  // const [videoCompleted, setVideoCompleted] = useState(false);
+
+  // const handleVideoComplete = async () => {
+  //   if (!videoCompleted) {
+  //     setVideoCompleted(true);
+  //     const response = await fetch('/user/points', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ userId }),
+  //     });
+
+  //     const data = await response.json();
+  //     setPoints(data.points);
+  //   }
+  // };
 
   const {vid} = useParams();
 
@@ -16,7 +38,7 @@ function VideoPage() {
   const vv = vids?.data.filter((q) => q._id === vid)[0];
 
   const chanels = useSelector(state=>state?.chanellReducer);
-   //  console.log(chanels);
+    console.log("Channels:",chanels);
 
     const curentChanel = chanels.filter(e=>e._id===vid)[0];
 
@@ -27,16 +49,20 @@ function VideoPage() {
        <div className="video2_container_page">
          <div className="video_paly">
 
-           <video src={`http://localhost:8080/${vv?.filePath}`} className="video_play_screen" controls autoPlay></video>
+           <video src={`http://localhost:8080/${vv?.filePath}`} 
+           className="video_play_screen" 
+           controls 
+           autoPlay
+           ></video>
 
           <div className="video_description_2">
               <div className="video_title_div_2">
                  <p className="video_title_2">{vv?.videoTitle}</p>
                    <div className="time_to_upload">
-                      <div className="view_pages">
-                       {vv?.Views} <div className="dot"></div> {vv?.Uploader} {moment(vv?.createdAt).fromNow}
+                      <div className="view_pages">Views:&nbsp;
+                       {vv?.Views} <div className="dot"></div> {vv?.Uploader} {moment(vv?.createdAt).fromNow()}
                        </div>
-                       <Btns></Btns>
+                       <Btns vv={vv} vid={vid}></Btns>
                    </div>
                    
 

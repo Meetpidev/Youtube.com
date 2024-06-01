@@ -1,7 +1,10 @@
 import VideoList from "./VideoList.jsx";
+import { useDispatch, useSelector } from "react-redux";
 import "./WatchHistory.css";
 
 function WatchHistory({page,video_list}) {
+
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
 
   let style1 = {display:"none"}
   let style2 ={display:"inlineBlock"}
@@ -42,7 +45,7 @@ function WatchHistory({page,video_list}) {
                        <div className="right_side">
                            <h2>{page}</h2>
                              <div className="video_list">
-                                <VideoList page={page} VideoList={video_list}></VideoList>
+                                <VideoList page={page} VideoList={video_list} CurrentUser={CurrentUser?.result._id}></VideoList>
                              </div>
                        </div>
                    </p>

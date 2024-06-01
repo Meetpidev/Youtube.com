@@ -1,11 +1,30 @@
 import VideoShowCase from "../VideoShowCase/VideoShowCase";
 import PropTypes from 'prop-types'; 
-// import axios from "axios";
-// import { useEffect } from "react";
-// import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 import "./ShowVideo.css";
 
 function ShowVideo({vids}) {
+
+  const [points, setPoints] = useState(0);
+  const [videoCompleted, setVideoCompleted] = useState(false);
+
+  const handleVideoComplete = async () => {
+    if (!videoCompleted) {
+      setVideoCompleted(true);
+      const response = await fetch('/api/video-complete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+
+      const data = await response.json();
+      setCoins(data.coins);
+    }
+  };
 
   // const [points, setPoints] = useState(0);
 

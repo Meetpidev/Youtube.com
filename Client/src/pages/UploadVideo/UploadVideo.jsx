@@ -15,7 +15,7 @@ function UploadVideo({setvideoUploadPage}) {
     const CurrentUser = useSelector(state=>state?.currentUserReducer)
 
     const dispatch = useDispatch();
-S
+
     let handleFile = (e) => {
         setVideoFile(e.target.files[0]);
     }
@@ -50,7 +50,7 @@ S
             fileData.append("file", videoFile);
             fileData.append("title", title);
             fileData.append("chanel", CurrentUser?.result._id);
-            fileData.append("Uploder", CurrentUser?.result.name);
+            fileData.append("Uploader", CurrentUser?.result.name);
             console.log(videoFile)
             dispatch(uploadVideo({
                 fileData: fileData, 

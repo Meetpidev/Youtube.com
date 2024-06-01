@@ -1,12 +1,16 @@
 .video_show{
     cursor: pointer;
-    margin: .4rem;
     margin-bottom: 0;
     width: calc(100% - .8rem);
     height: 70%;
     border: 1px solid rgba(128,128,128,0.532);
+    
 }
 
+.show_video video{
+    width: 20rem;
+    border-radius: 2px;
+}
 .chanel_logo{
     width: 2.2rem;
     height: 2.2rem;
@@ -26,7 +30,7 @@
     height: 4rem;
     margin: auto auto;
 }
-.video_etails{
+.video_details{
     color: aliceblue;
     width: 80%;
     margin: .1rem;

@@ -1,21 +1,32 @@
 import ShowWatchhistory from "../ShowWatchHistory/ShowWatchhistory"
 
 
-function VideoLis({page,VideoList}) {
+function VideoLis({page,VideoList,CurrentUser}) {
 
-
+console.log(VideoList?.data);
 
   return (
     <>
+    {
+      CurrentUser ? (
+        <>
        {
-        VideoList.map(m=>{
+        VideoList?.data?.map(m=>{
           return(
             <> 
-              <ShowWatchhistory videoId={m._id} key={m._id}></ShowWatchhistory>
+              <ShowWatchhistory videoId={m?.videoId} key={m._id}></ShowWatchhistory>
             </>
           )
         })
        }
+        </>
+    ) : (
+        <>
+          <h2 style={{color:"white"}}>Plz Login To Watch Your {page} </h2>
+        </>
+    )
+    }
+       
     </>
   )
 }

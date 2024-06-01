@@ -4,7 +4,7 @@ import moment from "moment";
 import "./VideoShowCase.css";
 //  onVideoWatched
 
-function VideoShowCase({vid,}) {
+function VideoShowCase({vid}) {
 
   // const handleVideoPlay = () => {
   //   // Call the handler to allocate points
@@ -14,9 +14,11 @@ function VideoShowCase({vid,}) {
   
   return (
    <>
+   <div className="show_video">
      <Link to={`/videopage/${vid?._id}`}>
        <video src={`http://localhost:8080/${vid?.filePath}`} ></video>
      </Link>
+   
 
      <div className="video_description">
 
@@ -26,11 +28,12 @@ function VideoShowCase({vid,}) {
             </div>
         </div>
         
-        <div className="video_etails">
+        <div className="video_details">
             <p className="video_title">{vid?.videoTitle}</p>
             <pre className="video_upload_time">{vid?.createdAt}</pre>
-            <pre className="video_upload_time">{vid?.Views} <div className="dot">{vid?.Uploader} {moment(vid?.createdAt).fromNow}</div></pre>
+            <pre className="video_upload_time">{vid?.Views} <div className="dot"> {vid?.Uploader} {moment(vid?.createdAt).fromNow()} </div></pre>
         </div>
+     </div>
      </div>
    </>
   )

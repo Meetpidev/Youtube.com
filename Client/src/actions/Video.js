@@ -9,6 +9,7 @@ export const uploadVideo = (videoData) => async (dispatch) => {
   } catch (error) {
     alert(error.response.data.message)
   }
+
 };
 
 export const getAllvideos = () => async (dispatch) =>{
@@ -20,4 +21,18 @@ export const getAllvideos = () => async (dispatch) =>{
     }
   }
 
+export const likeVideo=(LikeDate)=>async(dispatch)=>{
+    try {
+      const {id,Like}=LikeDate;
+      console.log("Id:",id);
+      console.log("Like:",Like);
+      const {data}= await api.LikeVideo(id,Like);
+      console.log(data);
+      dispatch({type:"POST_LIKE",payload:data});
+      dispatch(getAllvideos());
+    } catch (error) {
+      alert(error);
+      console.log(error);
+    }
+  }
   
