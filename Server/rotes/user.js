@@ -10,7 +10,6 @@ routes.post("/login",login);
 routes.patch("/update/:id",updateChanelData);
 routes.get("/getAllchanel",getAllchanel);
 routes.post("/points/:id", gpoints);
-// routes.get("/points",gpoints);
-// routes.post("/points",ppoints);
+
 
 export default routes

@@ -6,6 +6,7 @@ import userRoutes from "./rotes/user.js";
 import videoRouts from "./rotes/video.js";
 import cors from "cors";
 import path from "path";
+import User from "./moduls/auth.js";
 
 if (process.env.NODE_ENV != "production") {
     dotenv.config();
@@ -30,8 +31,25 @@ async function main() {
     await mongoose.connect(DB_URL);
 }
 
+const updateUsers = async () => {
+  try {
+    await User.updateMany(
+      { points: { $exists: false } }, 
+      { $set: { points: 0 } } 
+    );
+
+    console.log('Users updated successfully');
+    mongoose.disconnect();
+  } catch (error) {
+    console.error('Error updating users:', error);
+    mongoose.disconnect();
+  }
+}
+updateUsers();
+
 app.use("/user",userRoutes);
 app.use("/video",videoRouts);
+
 
 app.listen(port,() => {
     console.log(`Server Running on the Port: ${port}`)

@@ -9,6 +9,7 @@ import { fetchAllchanel } from './actions/ChanelUser.js';
 import UploadVideo from './pages/UploadVideo/UploadVideo.jsx';
 import { getAllvideos } from './actions/Video.js';
 import { AlllikeVideo } from './actions/likeVideo.js';
+// import { addPoints } from './actions/points.js';
 
 
 
@@ -19,17 +20,10 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAllchanel);
-    dispatch(getAllvideos);
-    dispatch(AlllikeVideo);
-
-  // .then(data => {
-  //   // dispatch the data here if fetchAllchanel is successful
-  //   console.log('Fetched channel data:', data); // optional for logging
-  // })
-  // .catch(error => {
-  //   // handle errors here if the API call fails
-  //   console.error('Error fetching channels:', error);
-  // });
+    dispatch(getAllvideos());
+    dispatch(AlllikeVideo());
+    // dispatch(addPoints);
+    
  },[dispatch] );
    
   const [togglebar,settogglebar] = useState({display:"none"});

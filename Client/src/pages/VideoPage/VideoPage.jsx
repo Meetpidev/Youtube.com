@@ -1,15 +1,36 @@
 // import vid from "../../components/videos/vid.mp4";
 import Btns from "./btns.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Comments from "../../components/comments/comments.jsx";
 import "./VideoPage.css";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { addPoints } from "../../actions/points.js";
 
 function VideoPage() {
 
-  // const { userId } = useParams();
+    const { userId } = useParams();
+
+    const [videoCompleted, setVideoCompleted] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const points = useSelector(state => state.pointsReducer.points);
+
+    const handleVideoComplete = () => {
+      if (!videoCompleted) {
+        setVideoCompleted(true);
+        dispatch(addPoints(userId));
+      }
+    };
+  
+    // useEffect(() => {
+    //   console.log(points);
+    // }, [points]);
+
+  
+  // 
 
   // const [points, setPoints] = useState(0);
   // const [videoCompleted, setVideoCompleted] = useState(false);
@@ -53,6 +74,7 @@ function VideoPage() {
            className="video_play_screen" 
            controls 
            autoPlay
+           onEnded={handleVideoComplete}
            ></video>
 
           <div className="video_description_2">
@@ -88,7 +110,7 @@ function VideoPage() {
         </div>
 
           <div className="more_videos">
-            More Videos
+            More Videos: {points}
           </div>
          </div>
        </div>

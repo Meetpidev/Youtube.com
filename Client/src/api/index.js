@@ -27,4 +27,4 @@ export const addToLikedVideo = (likedVideoData) => API.post("/video/likeVideo", 
 
 export const AlllikeVideo = () => API.get("/video/AlllikeVideo");
 
-export const points = (id) => API.post(`/user/points/${id}`);
+export const points = (id) => API.post("/user/points",{id});
