@@ -15,12 +15,21 @@ if (process.env.NODE_ENV != "production") {
 const port = process.env.PORT;
 const DB_URL = process.env.CONNECTION_URL;
 
+const corsOptions = {
+  origin: 'http://localhost:5173/', // allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json({limit:"30mb",extended: true}));
 app.use(express.urlencoded({limit:"30mb",extended: true}));
 app.use("/uploads",express.static(path.join("uploads")));
+
+
 
 main().then(() => {
     console.log("Connection Successful..");
