@@ -9,7 +9,7 @@ const routes = express.Router();
 routes.post("/login",login);
 routes.patch("/update/:id",updateChanelData);
 routes.get("/getAllchanel",getAllchanel);
-routes.post("/points/:id", gpoints);
+routes.post("/points", gpoints);
 
 
 export default routes

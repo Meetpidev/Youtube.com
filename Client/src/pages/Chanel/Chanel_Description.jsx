@@ -6,10 +6,10 @@ import "./Chanel_Description.css";
 function Chanel_Description({setCreatchanel, cid, setvideoUploadPage}) {
 
     const chanels = useSelector(state=>state?.chanellReducer);
-   //  console.log(chanels);
+    console.log(chanels);
 
     const curentChanel = chanels.filter(e=>e._id===cid)[0];
-   //  console.log(curentChanel);
+    console.log(curentChanel);
 
    const CurrentUser = useSelector((state) => state?.currentUserReducer);
 
@@ -18,7 +18,7 @@ function Chanel_Description({setCreatchanel, cid, setvideoUploadPage}) {
         <div className="container3_chanel">
             <div className="chanel_logo_chanel">
                {
-                  curentChanel?.name.charAt(0).toUpperCase()
+                  curentChanel?.name?.charAt(0).toUpperCase()
                }
             </div>
 

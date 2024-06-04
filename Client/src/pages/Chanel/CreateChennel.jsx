@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateChanelData } from "../../api";
+import { updateChanelData } from "../../actions/ChanelUser.js";
 import { useSelector } from "react-redux";
 import { login } from "../../actions/auth.js";
 import "./CreateChennel.css";

@@ -22,7 +22,7 @@ console.log(VideoList?.data);
         </>
     ) : (
         <>
-          <h2 style={{color:"white"}}>Plz Login To Watch Your {page} </h2>
+          <h2 style={{color:"white", paddingTop:"2rem"}}>Plz Login To Watch Your {page} </h2>
         </>
     )
     }

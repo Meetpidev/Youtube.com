@@ -14,17 +14,21 @@ API.interceptors.request.use(req => {
 export const login = (authData) => API.post("/user/login",authData);
 
 export const updateChanelData = (id,updateData) => API.patch(`/user/update/${id}`,updateData);
-
 export const fetchAllchanel = () => API.get("/user/getAllchanel");
 
 export const uploadVideo = (fileData,fileOption) => API.post("/video/uploadvideo",fileData,fileOption);
-
 export const getVideos = () => API.get("/video/getvideos");
 
 export const LikeVideo = (id,Like) => API.patch(`/video/like/${id}`,{Like});
-
 export const addToLikedVideo = (likedVideoData) => API.post("/video/likeVideo", likedVideoData);
-
 export const AlllikeVideo = () => API.get("/video/AlllikeVideo");
 
-export const points = (id) => API.post("/user/points",{id});
+export const addTowatchLater = (watchLaterData) => API.post("/video/watchLater", watchLaterData);
+export const getAllwatchLater = () => API.get("/video/getAllwatchLater");
+export const deleteWatchLater = (videoId, Viewer) => API.delete(`/video/deleteWatchlater/${videoId}/${Viewer}`);
+
+export const addToHistory = (HistoryData) => API.post("/video/History", HistoryData);
+export const getAllHistory = () => API.get("/video/getAllHistory");
+export const clearHistory = (userId) => API.delete(`/video/clearHistory/${userId}`);
+
+export const points = (id) => API.post("/user/points", { id });

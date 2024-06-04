@@ -5,13 +5,7 @@ import "./VideoShowCase.css";
 //  onVideoWatched
 
 function VideoShowCase({vid}) {
-
-  // const handleVideoPlay = () => {
-  //   // Call the handler to allocate points
-  //   onVideoWatched();
-  // };
-//  onClick={handleVideoPlay}
-  
+ 
   return (
    <>
    <div className="show_video">

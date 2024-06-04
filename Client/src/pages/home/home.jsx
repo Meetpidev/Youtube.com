@@ -6,7 +6,7 @@ import "./home.css";
 
 export default function Home(){
 
-  const vids = useSelector(state=>state.videoReducer)?.data?.filter(q=>q) || [];
+  const vids = useSelector(state=>state.videoReducer)?.data?.filter(q=>q).reverse() || [];
   // console.log(vids);
 
     //     const vids = [

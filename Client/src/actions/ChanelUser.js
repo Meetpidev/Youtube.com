@@ -1,6 +1,6 @@
 import * as api from "../api";
 
-export const fetchAllchanel = async(dispatch)=>{
+export const fetchAllchanel = ()=>async(dispatch)=>{
 
     try{
         const {data} = await api.fetchAllchanel();
@@ -8,7 +8,7 @@ export const fetchAllchanel = async(dispatch)=>{
     }
     catch(error)
     {
-       alert(error);
+      console.log(error);
     }
     
 }

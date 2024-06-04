@@ -3,7 +3,6 @@ import LikeHistory from "../../components/WatchHistory/WatchHistory";
 // import vid from "../../components/videos/vid.mp4";
 import { useSelector } from "react-redux";
 
-import "./LikedVideos.css";
 
 function LikedVideos() {
 
@@ -43,6 +42,7 @@ function LikedVideos() {
 //         description: "Description of video 3"
 //     },
 // ]
+
   return (
     <>
     <div className="container_page_app">

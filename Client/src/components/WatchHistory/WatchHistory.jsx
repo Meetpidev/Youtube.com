@@ -1,11 +1,20 @@
 import VideoList from "./VideoList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import "./WatchHistory.css";
+import { clearHistory } from "../../actions/History.js";
 
 function WatchHistory({page,video_list}) {
 
   const CurrentUser = useSelector((state) => state?.currentUserReducer);
+  const dispatch = useDispatch();
 
+  let handleHistory = () => {
+    if(CurrentUser){
+       dispatch(clearHistory({
+        userId: CurrentUser?.result._id,
+       }))
+    }
+  }
   let style1 = {display:"none"}
   let style2 ={display:"inlineBlock"}
   return (
@@ -20,7 +29,7 @@ function WatchHistory({page,video_list}) {
                             page === "History" ? (
                               <>
                                 <b>Your {page} Shown Here</b>
-                                <div className="clear_history_btn">Clear History</div>
+                                <div className="clear_history_btn" onClick={()=>handleHistory()}>Clear History</div>
                               </> ) : (
                                 <>
                                   {page === "Liked Videos" ? (
@@ -44,7 +53,7 @@ function WatchHistory({page,video_list}) {
 
                        <div className="right_side">
                            <h2>{page}</h2>
-                             <div className="video_list">
+                             <div className="video_list lib">
                                 <VideoList page={page} VideoList={video_list} CurrentUser={CurrentUser?.result._id}></VideoList>
                              </div>
                        </div>

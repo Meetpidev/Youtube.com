@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { likeVideo } from "../../actions/Video.js";
 import "./btns.css";
 import { addToLikedVideo } from "../../api/index.js";
+import { addTowatchLater, deleteWatchLater } from "../../actions/watchLater.js";
 // import videoFiles from "../../../../Server/moduls/videoFiles";
 
 function Btns({vv,vid}) {
@@ -19,10 +20,46 @@ function Btns({vv,vid}) {
     const [LikeBtn, setLikeBtn] = useState(false);
     const [DislikeBtn, setDislikeBtn] = useState(false);
     // const [Count, setCount] = useState(0);
+
+    const likedVideoList = useSelector(state=>state.likedVideoReducer);
+    const Watchlater_video = useSelector(state=>state.watchLaterReducer);
+
+    useEffect(()=>{
+      likedVideoList?.data
+        .filter(
+          (q)=>q?.videoId === vid && q?.viewer === CurrentUser?.result._id
+        ).map((m) => setLikeBtn(true) );
+
+        Watchlater_video?.data
+        .filter(
+          (q)=>q?.videoId === vid && q?.viewer === CurrentUser?.result._id
+        ).map((m) => SAveVideo(true) );
+    },[]);
     
     let handleSave = () => {
-      setSAveVideo(!SAveVideo);
+      if (CurrentUser) {
+        if (SAveVideo) {
+          setSAveVideo(false);
+          dispatch(deleteWatchLater({
+            videoId: vid,
+            Viewer: CurrentUser?.result._id,
+          }));
+          console.log("Current User:", CurrentUser);
+          console.log("UserId:", CurrentUser?.result._id);
+        } else {
+          setSAveVideo(true);
+          dispatch(addTowatchLater({
+            videoId: vid,
+            Viewer: CurrentUser?.result?._id,
+          }));
+          console.log("Toggle Save:", vid);
+          console.log("Current result id:", CurrentUser?.result?._id);
+        }
+      }
+     else{
+       alert("You Are Not Log In");
     }
+  }
 
     let handlelikes = (e,lk) => {
       if(CurrentUser)
@@ -48,7 +85,7 @@ function Btns({vv,vid}) {
         dispatch(
           addToLikedVideo({
             videoId: vid,
-            viewer: CurrentUser?.result._id,
+            Viewer: CurrentUser?.result._id,
           })
         );
         
@@ -100,11 +137,22 @@ function Btns({vv,vid}) {
             {
               LikeBtn ? (
                     <>
-                      <span className="like" onClick={(e) => {handlelikes(e,vv.Like)}}><ThumbUpIcon></ThumbUpIcon></span>
+                      <span 
+                      className="like" 
+                      onClick={(e) => {handlelikes(e,vv.Like)}}>
+                      <ThumbUpIcon></ThumbUpIcon>
+                      </span>
+                      <span><b>{vv.Like}</b></span>
                     </>
                 ) : (
                     <>
-                     <span className="like" onClick={(e) => {handlelikes(e,vv.Like)}}><ThumbUpOutlinedIcon></ThumbUpOutlinedIcon></span>
+                     <span 
+                     className="like"
+                     onClick={(e) => 
+                     {handlelikes(e,vv.Like)}}>
+                     <ThumbUpOutlinedIcon></ThumbUpOutlinedIcon>
+                     </span>
+                     <span><b>{vv.Like}</b></span>
                     </>  
                 )
                
@@ -116,7 +164,13 @@ function Btns({vv,vid}) {
             {
                 DislikeBtn ? (
                     <>
-                      <span className="Dislike" onClick={(e) => handleDislikes(e,vv.Like)}><ThumbDownAltIcon></ThumbDownAltIcon></span>
+                      <span 
+                      className="Dislike" 
+                      onClick={(e) => 
+                      handleDislikes(e,vv.Like)}>
+                      <ThumbDownAltIcon></ThumbDownAltIcon>
+                      </span>
+                      <span><b></b></span>
                     </>
                 ) : (
                     <>

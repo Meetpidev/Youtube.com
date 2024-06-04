@@ -7,61 +7,63 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { addPoints } from "../../actions/points.js";
+import { addToHistory } from "../../actions/History.js";
 
 function VideoPage() {
 
-    const { userId } = useParams();
-
+  const CurrentUser = useSelector((state) => state?.currentUserReducer);
+   
+    const [Points,setPoints] = useState(0);
     const [videoCompleted, setVideoCompleted] = useState(false);
 
     const dispatch = useDispatch();
 
     const points = useSelector(state => state.pointsReducer.points);
 
+    const currentUser = useSelector(state => state.currentUserReducer);
+    console.log("current user is ",currentUser);
+
+    const userId = currentUser?.result?._id;
+    console.log(userId);
+
     const handleVideoComplete = () => {
-      if (!videoCompleted) {
+      if (!videoCompleted && userId) {
         setVideoCompleted(true);
+        setPoints(points+5);
         dispatch(addPoints(userId));
       }
     };
   
-    // useEffect(() => {
-    //   console.log(points);
-    // }, [points]);
+    let handleHistory = () => {
+      dispatch(
+        addToHistory({
+            videoId: vid,
+            Viewer: CurrentUser?.result?._id,
+        })
+      )
 
-  
-  // 
+    }
+    useEffect(() => {
+      if(CurrentUser)
+        {
+          handleHistory();
+        }
+    }, []);
 
-  // const [points, setPoints] = useState(0);
-  // const [videoCompleted, setVideoCompleted] = useState(false);
-
-  // const handleVideoComplete = async () => {
-  //   if (!videoCompleted) {
-  //     setVideoCompleted(true);
-  //     const response = await fetch('/user/points', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ userId }),
-  //     });
-
-  //     const data = await response.json();
-  //     setPoints(data.points);
-  //   }
-  // };
 
   const {vid} = useParams();
+  console.log("video id is ",vid);
 
   const vids = useSelector(state=>state.videoReducer);
   console.log(vids)
 
   const vv = vids?.data.filter((q) => q._id === vid)[0];
-
+  
+  console.log(vv);
   const chanels = useSelector(state=>state?.chanellReducer);
     console.log("Channels:",chanels);
 
-    const curentChanel = chanels.filter(e=>e._id===vid)[0];
+    // const curentChanel = chanels.filter(e=>e._id===vid)[0];
 
   return (
    <>
@@ -110,7 +112,7 @@ function VideoPage() {
         </div>
 
           <div className="more_videos">
-            More Videos: {points}
+            More Videos: {Points}
           </div>
          </div>
        </div>

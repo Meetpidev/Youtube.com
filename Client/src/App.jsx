@@ -9,9 +9,9 @@ import { fetchAllchanel } from './actions/ChanelUser.js';
 import UploadVideo from './pages/UploadVideo/UploadVideo.jsx';
 import { getAllvideos } from './actions/Video.js';
 import { AlllikeVideo } from './actions/likeVideo.js';
-// import { addPoints } from './actions/points.js';
-
-
+import { addPoints } from './actions/points.js';
+import { getAllwatchLater } from './actions/watchLater.js';
+import { getAllHistory } from './actions/History.js';
 
 
 function App() {
@@ -22,7 +22,9 @@ function App() {
     dispatch(fetchAllchanel);
     dispatch(getAllvideos());
     dispatch(AlllikeVideo());
-    // dispatch(addPoints);
+    dispatch(addPoints());
+    dispatch(getAllwatchLater());
+    dispatch(getAllHistory());
     
  },[dispatch] );
    

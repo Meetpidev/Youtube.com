@@ -2,6 +2,7 @@
    display: grid;
    grid-template-columns: repeat(4,1fr);
    row-gap: 5.7rem;
+   margin-bottom: 6rem;
 }
 .show_container video{
    border-radius: .5rem;
