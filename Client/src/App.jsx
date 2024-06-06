@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllchanel);
+    dispatch(fetchAllchanel());
     dispatch(getAllvideos());
     dispatch(AlllikeVideo());
     dispatch(addPoints());

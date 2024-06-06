@@ -13,6 +13,19 @@ function Auth({User, setAuthBtn, setCreatchanel}) {
     alert("Log Out SuccessFully");
   };
 
+  const displayInitialOrPicture = () => {
+
+    if (User?.result?.imageUrl) {
+      return <img src={User?.result?.imageUrl} alt="Profile" className="profile-picture" />;
+    }
+    else{
+      const initial = User?.result?.name
+      ? User?.result?.name.charAt(0).toUpperCase()
+      : User?.result?.email.charAt(0).toUpperCase();
+    return <div className="initial">{initial}</div>;
+    }
+}
+
   return (
     <>
    <div className="Auth_container" onClick={()=>setAuthBtn(false)}>
@@ -22,11 +35,7 @@ function Auth({User, setAuthBtn, setCreatchanel}) {
 
             <div className="logo_div">
                 <p className="logo">
-                  {
-                    User?.result.name ? (
-                      <>{User?.result.name?.charAt(0).toUpperCase() }</>) : (
-                        <>{User?.result.email?.charAt(0).toUpperCase()}</>)
-                  }
+                  { displayInitialOrPicture() }
                 </p>
             </div>
 

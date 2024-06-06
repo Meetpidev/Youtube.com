@@ -8,6 +8,7 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { addPoints } from "../../actions/points.js";
 import { addToHistory } from "../../actions/History.js";
+import SimpleVideoPlayer from "../../components/videotap/videotap.jsx";
 
 function VideoPage() {
 
@@ -77,6 +78,7 @@ function VideoPage() {
            controls 
            autoPlay
            onEnded={handleVideoComplete}
+           onClick={SimpleVideoPlayer}
            ></video>
 
           <div className="video_description_2">

@@ -17,9 +17,9 @@ function Chanel_Description({setCreatchanel, cid, setvideoUploadPage}) {
     <>
         <div className="container3_chanel">
             <div className="chanel_logo_chanel">
-               {
-                  curentChanel?.name?.charAt(0).toUpperCase()
-               }
+            <p className="chanel_name">
+              <b>{ curentChanel?.name?.charAt(0).toUpperCase() }</b> 
+               </p>
             </div>
 
             <div className="description_chanel">

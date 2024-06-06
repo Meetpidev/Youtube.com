@@ -13,7 +13,8 @@ function CreateChennel({setCreatchanel}) {
   //     joinedon:"2222-07-15T09:57:23.489Z"
   //   }
   // };
-  const CurrentUser = useSelector(state=>state.currentUserReducer)
+  const CurrentUser = useSelector(state=>state?.currentUserReducer)
+  console.log("Current User",CurrentUser)
 
   const [name,setname] = useState(CurrentUser?.result.name);
   const [desc,setdesc] = useState(CurrentUser?.result.desc);
@@ -36,7 +37,7 @@ function CreateChennel({setCreatchanel}) {
       setCreatchanel(false)
       setTimeout(()=>{
         dispatch(login({email:CurrentUser?.result.email}))
-      },1000)
+      },5000);
     }
 
   }
@@ -47,7 +48,7 @@ function CreateChennel({setCreatchanel}) {
           <input type="text" name="text" value={"x"} className="ibtn_x" onClick={()=>setCreatchanel(false)}/>
             <div className="CreateChennel2">
                <h1>
-               { CurrentUser?.result.name? <>Edite</> : <>Create</> }  Your Chanel
+               { CurrentUser?.result.name ? <>Edite</> : <>Create</> }  Your Chanel
                </h1>
 
                <input 
